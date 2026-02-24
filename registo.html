@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Registar - NextByte</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+        <link href="lib/animate/animate.min.css" rel="stylesheet">
+        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status"><span class="sr-only">Aguarde...</span></div>
+        </div>
+
+        <!-- Topbar -->
+        <div class="container-fluid px-5 d-none border-bottom d-lg-block">
+            <div class="row gx-0 align-items-center">
+                <div class="col-lg-6 text-center text-lg-start mb-lg-0"><div class="d-inline-flex align-items-center" style="height: 45px;"></div></div>
+                <div class="col-lg-6 text-center text-lg-end">
+                    <div class="d-inline-flex align-items-center" style="height: 45px;">
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-toggle text-muted mx-2" data-bs-toggle="dropdown"><small> Português</small></a>
+                            <div class="dropdown-menu rounded"><a href="#" class="dropdown-item"> Inglês</a><a href="#" class="dropdown-item"> Espanhol</a></div>
+                        </div>
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-toggle text-muted ms-2" data-bs-toggle="dropdown"><small><i class="fa fa-home me-2"></i> Conta</small></a>
+                            <div class="dropdown-menu rounded">
+                                <a href="login.html" class="dropdown-item"> Entrar</a>
+                                <a href="registo.html" class="dropdown-item"> Registar</a>
+                                <a href="cart.html" class="dropdown-item"> Carrinho</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid px-5 py-4 d-none d-lg-block">
+            <div class="row gx-0 align-items-center text-center">
+                <div class="col-md-4 col-lg-3 text-center text-lg-start">
+                    <div class="d-inline-flex align-items-center">
+                        <a href="index.html" class="navbar-brand p-0">
+                            <h1 class="display-5 text-primary m-0"><img src="img/logo.png" class="me-2" style="width: 18%;" alt="Logo">NextByte</h1>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-6 text-center">
+                    <div class="position-relative ps-4">
+                        <input type="text" class="form-control rounded-pill py-3" placeholder="Procura o que quiseres" style="padding-right: 60px; border: 1px solid #ddd;" />
+                        <button type="button" class="btn btn-primary" style="position: absolute; right: 30px; top: 50%; transform: translateY(-50%); border-radius: 50%; width: 40px; height: 40px; padding: 0; border: none;"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 text-center text-lg-end">
+                    <div class="d-inline-flex align-items-center">
+                        <a href="cart.html" class="text-muted d-flex align-items-center justify-content-center"><span class="rounded-circle btn-md-square border"><i class="fas fa-shopping-cart"></i></span> <span id="cart-total" class="text-dark ms-2">0,00 €</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navbar -->
+        <div class="container-fluid nav-bar p-0">
+            <div class="row gx-0 bg-primary px-5 align-items-center">
+                <div class="col-lg-3 d-none d-lg-block">
+                    <nav class="navbar navbar-light position-relative" style="width: 250px;">
+                        <button class="navbar-toggler border-0 fs-4 w-100 px-0 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#allCat"></button>
+                        <div class="collapse navbar-collapse rounded-bottom" id="allCat"><div class="navbar-nav ms-auto py-0"><ul class="list-unstyled categories-bars"></ul></div></div>
+                    </nav>
+                </div>
+                <div class="col-12 col-lg-9">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+                        <a href="index.html" class="navbar-brand d-block d-lg-none"><h1 class="display-5 text-secondary m-0"><img src="img/logo.png" class="me-2" style="width: 18%;" alt="Logo">NextByte</h1></a>
+                        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"><span class="fa fa-bars fa-1x"></span></button>
+                        <div class="collapse navbar-collapse" id="navbarCollapse">
+                            <div class="navbar-nav ms-auto py-0">
+                                <a href="index.html" class="nav-item nav-link">Página principal</a>
+                                <a href="shop.html" class="nav-item nav-link">Loja</a>
+                                <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Secções</a>
+                                    <div class="dropdown-menu m-0">
+                                        <a href="bestseller.html" class="dropdown-item">Descontos</a>
+                                        <a href="cart.html" class="dropdown-item">Carrinho</a>
+                                    </div>
+                                </div>
+                                <a href="contact.html" class="nav-item nav-link me-2">Contacto</a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page Header -->
+        <div class="container-fluid page-header py-5">
+            <h1 class="text-center text-white display-6 wow fadeInUp" data-wow-delay="0.1s">Criar conta</h1>
+            <ol class="breadcrumb justify-content-center mb-0 wow fadeInUp" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="index.html" class="text-white">Início</a></li>
+                <li class="breadcrumb-item active text-white">Registar</li>
+            </ol>
+        </div>
+
+        <!-- Registo Form -->
+        <div class="container-fluid py-5">
+            <div class="container py-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-5">
+                        <div class="bg-light rounded p-5 wow fadeInUp" data-wow-delay="0.2s">
+                            <h2 class="mb-4">Registar</h2>
+                            <div id="registo-msg" class="alert d-none" role="alert"></div>
+                            <form id="form-registo">
+                                <div class="form-item mb-4">
+                                    <label class="form-label">Nome</label>
+                                    <input type="text" class="form-control" name="nome" required placeholder="O teu nome">
+                                </div>
+                                <div class="form-item mb-4">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" name="email" required placeholder="o-teu@email.com">
+                                </div>
+                                <div class="form-item mb-4">
+                                    <label class="form-label">Palavra-passe</label>
+                                    <input type="password" class="form-control" name="password" required placeholder="••••••••" minlength="4">
+                                </div>
+                                <button type="submit" class="btn btn-primary rounded-pill px-4 py-3 w-100">Criar conta</button>
+                            </form>
+                            <p class="mt-4 mb-0 text-center text-muted">Já tens conta? <a href="login.html">Entrar</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer (resumido) -->
+        <div class="container-fluid copyright py-4">
+            <div class="container">
+                <div class="row g-4 align-items-center">
+                    <div class="col-md-6 text-center text-md-start mb-md-0">
+                        <span class="text-white"><a href="index.html" class="border-bottom text-white"><i class="fas fa-copyright text-light me-2"></i>NextByte</a>, Todos os direitos reservados.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="btn btn-primary btn-lg-square back-to-top"><i class="fa fa-arrow-up"></i></a>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/auth.js"></script>
+        <script src="js/cart.js"></script>
+        <script>
+            (function () {
+                var form = document.getElementById('form-registo');
+                var msg = document.getElementById('registo-msg');
+                if (form) {
+                    form.addEventListener('submit', function (e) {
+                        e.preventDefault();
+                        var nome = form.querySelector('[name="nome"]').value.trim();
+                        var email = form.querySelector('[name="email"]').value.trim();
+                        var password = form.querySelector('[name="password"]').value;
+                        var r = window.NextByteAuth.registar(nome, email, password);
+                        msg.classList.add('d-none');
+                        if (r.ok) {
+                            msg.classList.remove('alert-danger');
+                            msg.classList.add('alert-success');
+                            msg.textContent = 'Conta criada. Vai a Entrar para iniciar sessão.';
+                            msg.classList.remove('d-none');
+                            setTimeout(function () { window.location.href = 'login.html'; }, 1500);
+                        } else {
+                            msg.classList.remove('alert-success');
+                            msg.classList.add('alert-danger');
+                            msg.textContent = r.msg || 'Erro ao registar.';
+                            msg.classList.remove('d-none');
+                        }
+                    });
+                }
+            })();
+        </script>
+    </body>
+</html>

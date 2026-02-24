@@ -50,12 +50,9 @@
                   <div class="dropdown">
                      <a href="#" class="dropdown-toggle text-muted ms-2" data-bs-toggle="dropdown"><small><i class="fa fa-home me-2"></i> Conta</small></a>
                      <div class="dropdown-menu rounded">
-                        <a href="#" class="dropdown-item"> Entrar</a>
-                        <a href="#" class="dropdown-item"> Meu Cartão</a>
-                        <a href="#" class="dropdown-item"> Notificações</a>
-                        <a href="#" class="dropdown-item"> Defenições</a>
-                        <a href="#" class="dropdown-item"> Minha Conta</a>
-                        <a href="#" class="dropdown-item"> Sair</a>
+                        <a href="login.html" class="dropdown-item"> Entrar</a>
+                        <a href="registo.html" class="dropdown-item"> Registar</a>
+                        <a href="cart.html" class="dropdown-item"> Meu Carrinho</a>
                      </div>
                   </div>
                </div>
@@ -66,11 +63,8 @@
          <div class="row gx-0 align-items-center text-center">
             <div class="col-md-4 col-lg-3 text-center text-lg-start">
                <div class="d-inline-flex align-items-center">
-                  <a href="" class="navbar-brand p-0">
-                     <h1 class="display-5 text-primary m-0">
-                        <img src="img/logo.png" class="me-2" style="width: 18%;" alt="Logo">
-                        NextByte</h1>
-                     <!--  -->
+                  <a href="index.html" class="navbar-brand p-0">
+                     <h1 class="display-5 text-primary m-0"><img src="img/logo.png" class="me-2" style="width: 18%;" alt="Logo">NextByte</h1>
                   </a>
                </div>
             </div>
@@ -103,7 +97,7 @@
             </div>
             <div class="col-md-4 col-lg-3 text-center text-lg-end">
                <div class="d-inline-flex align-items-center">
-                  <a href="#" class="text-muted d-flex align-items-center justify-content-center"><span class="rounded-circle btn-md-square border"><i class="fas fa-shopping-cart"></i></span> <span class="text-dark ms-2">€0.00</span></a>
+                  <a href="cart.html" class="text-muted d-flex align-items-center justify-content-center"><span class="rounded-circle btn-md-square border"><i class="fas fa-shopping-cart"></i></span> <span id="cart-total" class="text-dark ms-2">0,00 €</span></a>
                </div>
             </div>
          </div>
@@ -129,9 +123,8 @@
             </div>
             <div class="col-12 col-lg-9">
                <nav class="navbar navbar-expand-lg navbar-light bg-primary ">
-                  <a href="" class="navbar-brand d-block d-lg-none">
-                     <h1 class="display-5 text-secondary m-0"><i class="fas fa-shopping-bag text-white me-2"></i>NextByte</h1>
-                     <!-- <img src="img/logo.png" alt="Logo"> -->
+                  <a href="index.html" class="navbar-brand d-block d-lg-none">
+                     <h1 class="display-5 text-secondary m-0"><img src="img/logo.png" class="me-2" style="width: 18%;" alt="Logo">NextByte</h1>
                   </a>
                   <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                   <span class="fa fa-bars fa-1x"></span>
@@ -307,6 +300,7 @@
       <!-- Our Products Start -->
       <div class="container-fluid product py-5">
          <div class="container py-5">
+            <div id="order-success-msg" class="alert alert-success alert-dismissible fade show d-none mb-4" role="alert">Encomenda efetuada com sucesso! Obrigado pela tua compra. <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button></div>
             <div class="tab-class">
                <div class="row g-4">
                   <div class="col-lg-4 text-start wow fadeInLeft" data-wow-delay="0.1s">
@@ -331,7 +325,7 @@
                   <div id="tab-1" class="tab-pane fade show p-0 active">
                      <div class="row g-4">
                         <div class="col-md-6 col-lg-4 col-xl-3">
-                           <div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s">
+                           <div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s" data-product-id="1" data-product-name="Acer Chromebook 314" data-product-price="219,99" data-product-img="img/Fotografias/1.jpg">
                               <div class="product-item-inner border rounded">
                                  <div class="product-item-inner-item">
                                     <img src="img/Fotografias/1.jpg" class="img-fluid w-100 rounded-top" alt="Acer Chromebook 314">
@@ -397,7 +391,7 @@
                            </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-3">
-                           <div class="product-item rounded wow fadeInUp" data-wow-delay="0.3s">
+                           <div class="product-item rounded wow fadeInUp" data-wow-delay="0.3s" data-product-id="3" data-product-name="SAMSUNG Galaxy S25" data-product-price="600,00" data-product-img="img/Fotografias/3.jpg">
                               <div class="product-item-inner border rounded">
                                  <div class="product-item-inner-item">
                                     <img src="img/Fotografias/3.jpg" class="img-fluid w-100 rounded-top" alt="SAMSUNG Galaxy S25">
@@ -463,7 +457,7 @@
                            </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-3">
-                           <div class="product-item rounded wow fadeInUp" data-wow-delay="0.5s">
+                           <div class="product-item rounded wow fadeInUp" data-wow-delay="0.5s" data-product-id="5" data-product-name="Denon Ah-Gc25Nc" data-product-price="299,99" data-product-img="img/Fotografias/5.jpg">
                               <div class="product-item-inner border rounded">
                                  <div class="product-item-inner-item">
                                     <img src="img/Fotografias/5.jpg" class="img-fluid w-100 rounded-top" alt="Auscultadores Denon">
@@ -496,7 +490,7 @@
                            </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-3">
-                           <div class="product-item rounded wow fadeInUp" data-wow-delay="0.6s">
+                           <div class="product-item rounded wow fadeInUp" data-wow-delay="0.6s" data-product-id="6" data-product-name="Monitor Curvo SAMSUNG" data-product-price="449,99" data-product-img="img/Fotografias/6.jpg">
                               <div class="product-item-inner border rounded">
                                  <div class="product-item-inner-item">
                                     <img src="img/Fotografias/6.jpg" class="img-fluid w-100 rounded-top" alt="Monitor SAMSUNG">
@@ -529,7 +523,7 @@
                            </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-3">
-                           <div class="product-item rounded wow fadeInUp" data-wow-delay="0.7s">
+                           <div class="product-item rounded wow fadeInUp" data-wow-delay="0.7s" data-product-id="7" data-product-name="Cadeira Gaming DR35" data-product-price="109,99" data-product-img="img/Fotografias/7.jpg">
                               <div class="product-item-inner border rounded">
                                  <div class="product-item-inner-item">
                                     <img src="img/Fotografias/7.jpg" class="img-fluid w-100 rounded-top" alt="Cadeira Gaming">
@@ -562,7 +556,7 @@
                            </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-3">
-                           <div class="product-item rounded wow fadeInUp" data-wow-delay="0.8s">
+                           <div class="product-item rounded wow fadeInUp" data-wow-delay="0.8s" data-product-id="8" data-product-name="Teclado SteelSeries" data-product-price="89,99" data-product-img="img/Fotografias/8.jpg">
                               <div class="product-item-inner border rounded">
                                  <div class="product-item-inner-item">
                                     <img src="img/Fotografias/8.jpg" class="img-fluid w-100 rounded-top" alt="Teclado SteelSeries">
@@ -595,7 +589,7 @@
                            </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-3">
-                           <div class="product-item rounded wow fadeInUp" data-wow-delay="0.9s">
+                           <div class="product-item rounded wow fadeInUp" data-wow-delay="0.9s" data-product-id="9" data-product-name="Tapete RGB" data-product-price="24,99" data-product-img="img/Fotografias/9.jpg">
                               <div class="product-item-inner border rounded">
                                  <div class="product-item-inner-item">
                                     <img src="img/Fotografias/9.jpg" class="img-fluid w-50 rounded-top" alt="Tapete RGB">
@@ -628,7 +622,7 @@
                            </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-3">
-                           <div class="product-item rounded wow fadeInUp" data-wow-delay="1.0s">
+                           <div class="product-item rounded wow fadeInUp" data-wow-delay="1.0s" data-product-id="10" data-product-name="Microfone Trust" data-product-price="49,99" data-product-img="img/Fotografias/10.jpg">
                               <div class="product-item-inner border rounded">
                                  <div class="product-item-inner-item">
                                     <img src="img/Fotografias/10.jpg" class="img-fluid w-100 rounded-top" alt="Microfone Trust">
@@ -960,5 +954,14 @@
       <script src="lib/owlcarousel/owl.carousel.min.js"></script>
       <!-- Template Javascript -->
       <script src="js/main.js"></script>
+      <script src="js/auth.js"></script>
+      <script src="js/cart.js"></script>
+      <script>
+      if (window.location.search.indexOf('order=ok') !== -1) {
+        var el = document.getElementById('order-success-msg');
+        if (el) { el.classList.remove('d-none'); }
+        if (window.history && window.history.replaceState) window.history.replaceState({}, '', window.location.pathname);
+      }
+      </script>
    </body>
 </html>
