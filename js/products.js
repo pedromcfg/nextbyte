@@ -101,6 +101,16 @@
       img: "img/Fotografias/10.jpg",
       shortDescription: "Microfone pratico para chamadas, streaming e gravacoes.",
       longDescription: "O Microfone Trust e uma opcao acessivel para comunicacao clara em chamadas, aulas online, gaming e criacao de conteudo."
+    },
+    {
+      id: "11",
+      slug: "apple-ipad-mini-g2356",
+      name: "Apple iPad Mini G2356",
+      category: "Tablet",
+      price: "1.050,00€",
+      img: "img/product-3.png",
+      shortDescription: "Tablet compacto para estudo, multimedia e produtividade.",
+      longDescription: "O Apple iPad Mini G2356 oferece desempenho estavel e boa experiencia de utilizacao para navegar, estudar e consumir conteudo no dia a dia."
     }
   ];
 

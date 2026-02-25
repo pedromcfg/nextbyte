@@ -540,7 +540,9 @@
           addBtn.addEventListener("click", function (e) {
             e.preventDefault();
             if (!window.NextByteCart || typeof window.NextByteCart.addToCart !== "function") {
-              alert("Carrinho indisponivel no momento.");
+              if (typeof window.showToast === "function") {
+                window.showToast("Carrinho indisponivel no momento.", "NextByte");
+              }
               return;
             }
 
@@ -559,7 +561,9 @@
             if (typeof window.NextByteCart.updateHeaderTotal === "function") {
               window.NextByteCart.updateHeaderTotal();
             }
-            alert("Produto adicionado ao carrinho!");
+            if (typeof window.showToast === "function") {
+              window.showToast("Produto adicionado ao carrinho!", "NextByte");
+            }
           });
         }
       })();

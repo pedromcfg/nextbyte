@@ -222,6 +222,53 @@
     return n.toFixed(2).replace('.', ',') + ' €';
   }
 
+  function ensureToastStyles() {
+    if (document.getElementById('nb-toast-style')) return;
+    var style = document.createElement('style');
+    style.id = 'nb-toast-style';
+    style.textContent =
+      '.nb-toast-wrap{position:fixed;top:20px;right:20px;z-index:5000;display:flex;flex-direction:column;gap:10px;}' +
+      '.nb-toast{background:#ffffff;border:1px solid #e9ecef;border-left:4px solid #0d6efd;color:#212529;border-radius:10px;min-width:260px;max-width:360px;padding:12px 14px;box-shadow:0 8px 24px rgba(0,0,0,.12);opacity:0;transform:translateY(-8px);transition:all .25s ease;}' +
+      '.nb-toast.show{opacity:1;transform:translateY(0);}' +
+      '.nb-toast-title{font-weight:700;font-size:14px;line-height:1.2;margin-bottom:3px;}' +
+      '.nb-toast-msg{font-size:13px;line-height:1.3;color:#495057;}';
+    document.head.appendChild(style);
+  }
+
+  function ensureToastWrap() {
+    ensureToastStyles();
+    var wrap = document.getElementById('nb-toast-wrap');
+    if (wrap) return wrap;
+    wrap = document.createElement('div');
+    wrap.id = 'nb-toast-wrap';
+    wrap.className = 'nb-toast-wrap';
+    document.body.appendChild(wrap);
+    return wrap;
+  }
+
+  /** Notificação visual discreta para feedback de ações. */
+  function showToast(message, title) {
+    if (typeof document === 'undefined' || !document.body) return;
+    var wrap = ensureToastWrap();
+    var toast = document.createElement('div');
+    toast.className = 'nb-toast';
+    toast.innerHTML =
+      '<div class="nb-toast-title">' + escapeHtml(title || 'Carrinho') + '</div>' +
+      '<div class="nb-toast-msg">' + escapeHtml(message || '') + '</div>';
+    wrap.appendChild(toast);
+
+    requestAnimationFrame(function () {
+      toast.classList.add('show');
+    });
+
+    setTimeout(function () {
+      toast.classList.remove('show');
+      setTimeout(function () {
+        if (toast.parentNode) toast.parentNode.removeChild(toast);
+      }, 250);
+    }, 2200);
+  }
+
   function escapeHtml(text) {
     var div = document.createElement('div');
     div.textContent = text;
@@ -260,8 +307,11 @@
     renderCartPage: renderCartPage,
     saveOrder: saveOrder,
     formatPrice: formatPrice,
-    bindAddToCartButtons: bindAddToCartButtons
+    showToast: showToast,
+    bindAddToCartButtons: bindAddToCartButtons,
+    bindViewProductLinks: bindViewProductLinks
   };
+  window.showToast = showToast;
 
   /** Liga os botões "Adicionar ao carrinho" nos cards de produto (index/shop). */
   function bindAddToCartButtons() {
@@ -283,9 +333,61 @@
         }
         addToCart({ id: id, name: name, price: parsePrice(priceRaw), img: img });
         updateHeaderTotal();
-        if (typeof window.showToast === 'function') window.showToast('Adicionado ao carrinho!');
-        else alert('Adicionado ao carrinho!');
+        showToast('Produto adicionado ao carrinho!', 'NextByte');
       });
+    });
+  }
+
+  /** Garante que o ícone de "ver produto" abre a página correta. */
+  function bindViewProductLinks() {
+    var productsApi = window.NextByteProducts;
+    var allProducts = productsApi && Array.isArray(productsApi.all) ? productsApi.all : [];
+
+    function normalizeName(value) {
+      return String(value || '')
+        .toLowerCase()
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function resolveSlugFromItem(item) {
+      var id = item.getAttribute('data-product-id');
+      if (id && allProducts.length) {
+        var byId = allProducts.find(function (p) { return String(p.id) === String(id); });
+        if (byId) return byId.slug;
+      }
+
+      var nameEl = item.querySelector('.text-center.rounded-bottom .d-block.h4, .text-center.rounded-bottom a.d-block.h4, .products-mini-content .d-block.h4');
+      var nameText = normalizeName(nameEl ? nameEl.textContent : '');
+      if (nameText && allProducts.length) {
+        var byName = allProducts.find(function (p) { return normalizeName(p.name) === nameText; });
+        if (byName) return byName.slug;
+      }
+
+      var imgEl = item.querySelector('img');
+      var imgSrc = imgEl ? (imgEl.getAttribute('src') || '') : '';
+      var photoMatch = imgSrc.match(/Fotografias\/(\d+)\.jpg/i);
+      if (photoMatch && allProducts.length) {
+        var byPhotoId = allProducts.find(function (p) { return String(p.id) === String(photoMatch[1]); });
+        if (byPhotoId) return byPhotoId.slug;
+      }
+
+      if (nameText.indexOf('apple ipad mini') !== -1) return 'apple-ipad-mini-g2356';
+      if (/img\/product-\d+\.png/i.test(imgSrc)) return 'apple-ipad-mini-g2356';
+      return null;
+    }
+
+    document.querySelectorAll('a').forEach(function (eyeLink) {
+      if (!eyeLink.querySelector('i.fa-eye')) return;
+      var href = (eyeLink.getAttribute('href') || '').trim();
+      if (href && href !== '#') return;
+
+      var item = eyeLink.closest('.product-item, .products-mini-item');
+      if (!item) return;
+
+      var slug = resolveSlugFromItem(item);
+      if (!slug) return;
+      eyeLink.setAttribute('href', 'single.html?product=' + encodeURIComponent(slug));
     });
   }
 
@@ -294,10 +396,12 @@
       updateHeaderTotal();
       if (document.querySelector('.container-fluid.py-5 .table tbody')) renderCartPage();
       bindAddToCartButtons();
+      bindViewProductLinks();
     });
   } else {
     updateHeaderTotal();
     if (document.querySelector('.container-fluid.py-5 .table tbody')) renderCartPage();
     bindAddToCartButtons();
+    bindViewProductLinks();
   }
 })();
