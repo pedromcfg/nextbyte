@@ -76,26 +76,12 @@
     var menu = dropdown.nextElementSibling;
     if (!menu || !menu.classList.contains('dropdown-menu')) return;
 
-    if (user) {
-      dropdown.innerHTML = '<small><i class="fa fa-user me-2"></i> ' + escapeHtml(user.nome) + '</small>';
-      menu.innerHTML =
-        '<a href="cart.html" class="dropdown-item">Carrinho</a>' +
-        '<a href="#" class="dropdown-item" id="auth-logout">Sair</a>';
-      var logoutBtn = document.getElementById('auth-logout');
-      if (logoutBtn) {
-        logoutBtn.addEventListener('click', function (e) {
-          e.preventDefault();
-          logout();
-          window.location.reload();
-        });
-      }
-    } else {
-      dropdown.innerHTML = '<small><i class="fa fa-home me-2"></i> Conta</small>';
-      menu.innerHTML =
-        '<a href="login.html" class="dropdown-item">Entrar</a>' +
-        '<a href="registo.html" class="dropdown-item">Registar</a>' +
-        '<a href="cart.html" class="dropdown-item">Carrinho</a>';
-    }
+    dropdown.innerHTML = user
+      ? '<small><i class="fa fa-user me-2"></i> ' + escapeHtml(user.nome) + '</small>'
+      : '<small><i class="fa fa-home me-2"></i> Conta</small>';
+    menu.innerHTML =
+      '<a href="login.html" class="dropdown-item">Entrar</a>' +
+      '<a href="registo.html" class="dropdown-item">Registar</a>';
   }
 
   function escapeHtml(text) {
