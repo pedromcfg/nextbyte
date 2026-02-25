@@ -546,6 +546,8 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/search.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/cart.js"></script>
     <script>
@@ -563,7 +565,9 @@
         var total = Cart.getCartTotal();
         var html = '';
         cart.forEach(function (p) {
-          var preco = parseFloat(String(p.price).replace(',', '.')) || 0;
+          var preco = (typeof p.price === 'number')
+            ? p.price
+            : (parseFloat(String(p.price).replace(/[^\d,.\-]/g, '').replace(/\./g, '').replace(',', '.')) || 0);
           var qty = p.qty || 1;
           var linhaTotal = preco * qty;
           html += '<tr class="text-center">' +

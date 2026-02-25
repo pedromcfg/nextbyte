@@ -111,7 +111,7 @@
             </div>
             <div class="col-md-4 col-lg-3 text-center text-lg-end">
                <div class="d-inline-flex align-items-center">
-                  <a href="#" class="text-muted d-flex align-items-center justify-content-center"><span class="rounded-circle btn-md-square border"><i class="fas fa-shopping-cart"></i></span> <span class="text-dark ms-2">€0.00</span></a>
+                  <a href="cart.html" class="text-muted d-flex align-items-center justify-content-center"><span class="rounded-circle btn-md-square border"><i class="fas fa-shopping-cart"></i></span> <span id="cart-total" class="text-dark ms-2">0,00 €</span></a>
                </div>
             </div>
          </div>
@@ -493,6 +493,78 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/cart.js"></script>
+    <script>
+      (function () {
+        var api = window.NextByteProducts;
+        if (!api || typeof api.getBySlug !== "function") return;
+
+        var params = new URLSearchParams(window.location.search);
+        var productKey = params.get("product") || "sony-alpha-7-iii";
+        var data = api.getBySlug(productKey) || api.getBySlug("sony-alpha-7-iii");
+        if (!data) return;
+
+        var headerTitle = document.querySelector(".page-header h1");
+        var breadcrumbCurrent = document.querySelector(".breadcrumb .active");
+        var detailBox = document.querySelector(".single-product .col-xl-6.text-center.mx-auto");
+        if (!detailBox) return;
+
+        var titleEl = detailBox.querySelector("h4.fw-bold.mb-3");
+        var categoryEl = detailBox.querySelector("p.mb-3");
+        var priceEl = detailBox.querySelector("h5.fw-bold.mb-3");
+        var shortDescEl = detailBox.querySelector("p.mb-4");
+        var longDescEl = document.querySelector("#nav-about p");
+        var carouselItems = document.querySelectorAll(".single-carousel .single-item");
+        var qtyInput = detailBox.querySelector(".quantity input");
+        var addBtn = detailBox.querySelector("a.btn.btn-primary");
+
+        if (headerTitle) headerTitle.textContent = data.name;
+        if (breadcrumbCurrent) breadcrumbCurrent.textContent = data.name;
+        if (titleEl) titleEl.textContent = data.name;
+        if (categoryEl) categoryEl.textContent = "Categorias: " + data.category;
+        if (priceEl) priceEl.textContent = data.price;
+        if (shortDescEl) shortDescEl.textContent = data.shortDescription;
+        if (longDescEl) longDescEl.textContent = data.longDescription;
+
+        carouselItems.forEach(function (item) {
+          var img = item.querySelector("img");
+          if (img) {
+            img.src = data.img;
+            img.alt = data.name;
+          }
+          item.setAttribute("data-dot", "<img class='img-fluid' src='" + data.img + "'>");
+        });
+
+        if (addBtn) {
+          addBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            if (!window.NextByteCart || typeof window.NextByteCart.addToCart !== "function") {
+              alert("Carrinho indisponivel no momento.");
+              return;
+            }
+
+            var qty = parseInt(qtyInput && qtyInput.value, 10);
+            qty = Number.isFinite(qty) && qty > 0 ? qty : 1;
+
+            for (var i = 0; i < qty; i += 1) {
+              window.NextByteCart.addToCart({
+                id: data.id || productKey,
+                name: data.name,
+                price: data.price,
+                img: data.img
+              });
+            }
+
+            if (typeof window.NextByteCart.updateHeaderTotal === "function") {
+              window.NextByteCart.updateHeaderTotal();
+            }
+            alert("Produto adicionado ao carrinho!");
+          });
+        }
+      })();
+    </script>
     </body>
 
 </html>
