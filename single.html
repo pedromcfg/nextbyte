@@ -193,17 +193,17 @@
                     <!-- Carrossel -->
                     <div class="col-xl-6 mx-auto">
                         <div class="single-carousel owl-carousel">
-                            <div class="single-item" data-dot="<img class='img-fluid' src='img/product-4.png'>">
+                            <div class="single-item">
                                 <div class="single-inner bg-light rounded">
                                     <img src="img/product-4.png" class="img-fluid rounded" alt="Image">
                                 </div>
                             </div>
-                            <div class="single-item" data-dot="<img class='img-fluid' src='img/product-5.png'>">
+                            <div class="single-item">
                                 <div class="single-inner bg-light rounded">
                                     <img src="img/product-5.png" class="img-fluid rounded" alt="Image">
                                 </div>
                             </div>
-                            <div class="single-item" data-dot="<img class='img-fluid' src='img/product-6.png'>">
+                            <div class="single-item">
                                 <div class="single-inner bg-light rounded">
                                     <img src="img/product-6.png" class="img-fluid rounded" alt="Image">
                                 </div>
@@ -225,14 +225,6 @@
                             <i class="fa fa-star"></i>
                         </div>
 
-                        <div class="mb-3">
-                            <div class="btn btn-primary d-inline-block rounded text-white py-1 px-4 me-2">
-                                <i class="fab fa-facebook-f me-1"></i> Partilhar
-                            </div>
-                            <div class="btn btn-secondary d-inline-block rounded text-white py-1 px-4 ms-2">
-                                <i class="fab fa-twitter ms-1"></i> Partilhar
-                            </div>
-                        </div>
 
                         <div class="d-flex flex-column mb-3">
                             <small>Disponivel: <strong class="text-primary">20 artigos em stock</strong></small>
@@ -529,7 +521,6 @@
             img.src = data.img;
             img.alt = data.name;
           }
-          item.setAttribute("data-dot", "<img class='img-fluid' src='" + data.img + "'>");
         });
 
         if (addBtn) {
