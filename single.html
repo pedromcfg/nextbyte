@@ -554,6 +554,15 @@
           });
         }
       })();
+
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".single-carousel .owl-nav").forEach(function (el) {
+          el.remove();
+        });
+        document.querySelectorAll(".single-carousel .owl-dots").forEach(function (el) {
+          el.remove();
+        });
+      });
     </script>
     </body>
 
